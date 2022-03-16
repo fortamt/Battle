@@ -2,19 +2,21 @@ package war;
 
 
 import java.util.LinkedList;
-import java.util.PriorityQueue;
 import java.util.Queue;
 
 public class Army {
-    private Queue<Warrior> army = new LinkedList<>();
+    private Queue<Warrior> force = new LinkedList<>();
 
-    public Queue<Warrior> getArmy() {
-        return army;
+    public Queue<Warrior> getForce() {
+        return force;
     }
 
-    public void addUnits(Warrior warrior, int count){
-        for(int i = 0; i < count; i++){
-            army.add(warrior);
+    public void addUnits(int warriorCount, int knightCount){
+        for(int i = 0; i < warriorCount; i++){
+            force.add(new Warrior());
+        }
+        for(int i = 0; i < knightCount; i++){
+            force.add(new Knight());
         }
     }
 }
