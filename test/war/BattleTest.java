@@ -1,6 +1,7 @@
 package war;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -33,6 +34,17 @@ class BattleTest {
     void test3(Warrior warrior1, Warrior warrior2, boolean expected) {
         Battle.fight(warrior1, warrior2);
         assertEquals(expected, warrior2.isAlive());
+    }
+
+    @Test
+    @DisplayName("Fight one by one")
+    void test4(){
+        var warrior1 = new Warrior();
+        var warrior2 = new Knight();
+        var warrior3 = new Warrior();
+        Battle.fight(warrior1, warrior2);
+        var res = Battle.fight(warrior2, warrior3);
+        assertFalse(res);
     }
 
     private static Stream<Arguments> isAliveSecondWarrior(){

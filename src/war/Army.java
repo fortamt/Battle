@@ -1,10 +1,12 @@
 package war;
 
 
+import java.util.LinkedList;
+import java.util.PriorityQueue;
 import java.util.Queue;
 
 public class Army {
-    private Queue<Warrior> army;
+    private Queue<Warrior> army = new LinkedList<>();
 
     public Queue<Warrior> getArmy() {
         return army;
