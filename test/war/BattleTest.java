@@ -8,7 +8,8 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class BattleTest {
 
@@ -38,33 +39,33 @@ class BattleTest {
 
     @Test
     @DisplayName("Fight one by one")
-    void test4(){
-        var warrior1 = new Warrior();
-        var warrior2 = new Knight();
-        var warrior3 = new Warrior();
+    void test4() {
+        var warrior1 = Warrior.of(Warrior.Type.WARRIOR);
+        var warrior2 = Warrior.of(Warrior.Type.KNIGHT);
+        var warrior3 = Warrior.of(Warrior.Type.WARRIOR);
         Battle.fight(warrior1, warrior2);
         var res = Battle.fight(warrior2, warrior3);
         assertFalse(res);
     }
 
-    private static Stream<Arguments> isAliveSecondWarrior(){
+    private static Stream<Arguments> isAliveSecondWarrior() {
         return Stream.of(
-                Arguments.of(new Warrior(), new Warrior(), false),
-                Arguments.of(new Warrior(), new Knight(), true)
+                Arguments.of(Warrior.of(Warrior.Type.WARRIOR), Warrior.of(Warrior.Type.WARRIOR), false),
+                Arguments.of(Warrior.of(Warrior.Type.WARRIOR), Warrior.of(Warrior.Type.KNIGHT), true)
         );
     }
 
-    private static Stream<Arguments> isAliveFirstWarrior(){
+    private static Stream<Arguments> isAliveFirstWarrior() {
         return Stream.of(
-                Arguments.of(new Warrior(), new Warrior(), true),
-                Arguments.of(new Knight(), new Warrior(), true)
+                Arguments.of(Warrior.of(Warrior.Type.WARRIOR), Warrior.of(Warrior.Type.WARRIOR), true),
+                Arguments.of(Warrior.of(Warrior.Type.KNIGHT), Warrior.of(Warrior.Type.WARRIOR), true)
         );
     }
 
-    private static Stream<Arguments> provideFightersForResultOfFight(){
+    private static Stream<Arguments> provideFightersForResultOfFight() {
         return Stream.of(
-                Arguments.of(new Warrior(), new Knight(), false),
-                Arguments.of(new Knight(), new Warrior(), true)
+                Arguments.of(Warrior.of(Warrior.Type.WARRIOR), Warrior.of(Warrior.Type.KNIGHT), false),
+                Arguments.of(Warrior.of(Warrior.Type.WARRIOR), Warrior.of(Warrior.Type.WARRIOR), true)
         );
     }
 

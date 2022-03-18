@@ -1,26 +1,25 @@
 package war;
 
-public class Warrior {
-    static final int ATTACK = 5;
-    private int health = 50;
+public interface Warrior {
 
-    int getHealth() {
-        return health;
+    enum Type {
+        WARRIOR, KNIGHT
     }
 
-    public int getAttack(){
-        return ATTACK;
+    static Warrior of(Type type) {
+        return switch (type) {
+            case WARRIOR -> new WarriorImpl(5, 50);
+            case KNIGHT -> new WarriorImpl(7, 50);
+        };
     }
 
-    public boolean isAlive(){
-        return getHealth() > 0;
-    }
+    int getHealth();
 
-    public void hit(Warrior warrior2) {
-        warrior2.takeDamage(this);
-    }
+    int getAttack();
 
-    protected void takeDamage(Warrior warrior) {
-        health -= warrior.getAttack();
-    }
+    boolean isAlive();
+
+    void hit(Warrior warrior2);
+
+    void takeDamage(Warrior warrior);
 }

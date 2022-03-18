@@ -7,30 +7,30 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ArmyBattleTest {
 
     @ParameterizedTest
     @MethodSource("armyGenerate")
     @DisplayName("Army fight")
-    void fight(int warriorCount1, int knightCount1, int warriorCount2, int knightCount2, boolean expected) {
+    void fight(Warrior.Type warrior1, int quantity1, Warrior.Type warrior2, int quantity2, boolean expected) {
         var army1 = new Army();
         var army2 = new Army();
-        army1.addUnits(warriorCount1, knightCount1);
-        army2.addUnits(warriorCount2, knightCount2);
+        army1.addUnits(warrior1, quantity1);
+        army2.addUnits(warrior2, quantity2);
         var res = Battle.fight(army1, army2);
         assertEquals(expected, res);
     }
 
-    private static Stream<Arguments> armyGenerate(){
+    private static Stream<Arguments> armyGenerate() {
         return Stream.of(
-                Arguments.of(1, 0, 2, 0, false),
-                Arguments.of(2, 0, 3, 0, false),
-                Arguments.of(5, 0, 7, 0, false),
-                Arguments.of(20, 0, 21, 0, true),
-                Arguments.of(10, 0, 11, 0, true),
-                Arguments.of(11, 0, 7, 0, true)
+                Arguments.of(Warrior.Type.WARRIOR, 1, Warrior.Type.WARRIOR, 2, false),
+                Arguments.of(Warrior.Type.WARRIOR, 2, Warrior.Type.WARRIOR, 3, false),
+                Arguments.of(Warrior.Type.WARRIOR, 5, Warrior.Type.WARRIOR, 7, false),
+                Arguments.of(Warrior.Type.WARRIOR, 20, Warrior.Type.WARRIOR, 21, true),
+                Arguments.of(Warrior.Type.WARRIOR, 10, Warrior.Type.WARRIOR, 11, true),
+                Arguments.of(Warrior.Type.WARRIOR, 11, Warrior.Type.WARRIOR, 7, true)
         );
     }
 }
