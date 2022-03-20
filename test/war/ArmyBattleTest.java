@@ -1,13 +1,14 @@
 package war;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class ArmyBattleTest {
 
@@ -22,6 +23,59 @@ class ArmyBattleTest {
         var res = Battle.fight(army1, army2);
         assertEquals(expected, res);
     }
+
+    @Test
+    @DisplayName("Army fight")
+    void test1() {
+        var army1 = new Army();
+        var army2 = new Army();
+        army1.addUnits(Warrior.Type.WARRIOR, 5);
+        army1.addUnits(Warrior.Type.DEFENDER, 4);
+        army1.addUnits(Warrior.Type.DEFENDER, 5);
+        army2.addUnits(Warrior.Type.WARRIOR, 4);
+        var res = Battle.fight(army1, army2);
+        assertTrue(res);
+    }
+
+    @Test
+    @DisplayName("Army fight")
+    void test2() {
+        var army1 = new Army();
+        var army2 = new Army();
+        army1.addUnits(Warrior.Type.DEFENDER, 5);
+        army1.addUnits(Warrior.Type.WARRIOR, 20);
+        army2.addUnits(Warrior.Type.WARRIOR, 21);
+        army1.addUnits(Warrior.Type.DEFENDER, 4);
+        var res = Battle.fight(army1, army2);
+        assertTrue(res);
+    }
+
+    @Test
+    @DisplayName("Army fight")
+    void test3() {
+        var army1 = new Army();
+        var army2 = new Army();
+        army1.addUnits(Warrior.Type.WARRIOR, 10);
+        army1.addUnits(Warrior.Type.DEFENDER, 5);
+        army2.addUnits(Warrior.Type.WARRIOR, 5);
+        army1.addUnits(Warrior.Type.DEFENDER, 10);
+        var res = Battle.fight(army1, army2);
+        assertTrue(res);
+    }
+
+    @Test
+    @DisplayName("Army fight")
+    void test4() {
+        var army1 = new Army();
+        var army2 = new Army();
+        army1.addUnits(Warrior.Type.DEFENDER, 2);
+        army1.addUnits(Warrior.Type.WARRIOR, 1);
+        army1.addUnits(Warrior.Type.DEFENDER, 1);
+        army2.addUnits(Warrior.Type.WARRIOR, 5);
+        var res = Battle.fight(army1, army2);
+        assertFalse(res);
+    }
+
 
     private static Stream<Arguments> armyGenerate() {
         return Stream.of(

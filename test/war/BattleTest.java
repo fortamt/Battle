@@ -8,8 +8,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 class BattleTest {
 
@@ -48,6 +47,26 @@ class BattleTest {
         assertFalse(res);
     }
 
+    @Test
+    @DisplayName("Test defense(must not heal)")
+    void test5() {
+        var warrior1 = Warrior.of(Warrior.Type.DEFENDER);
+        var warrior2 = Warrior.of(Warrior.Type.ROOKIE);
+        Battle.fight(warrior1, warrior2);
+        assertEquals(60, warrior1.getHealth());
+    }
+
+    @Test
+    @DisplayName("Fight with 3 type of warrior")
+    void test6() {
+        var warrior1 = Warrior.of(Warrior.Type.DEFENDER);
+        var warrior2 = Warrior.of(Warrior.Type.ROOKIE);
+        var warrior3 = Warrior.of(Warrior.Type.WARRIOR);
+        Battle.fight(warrior1, warrior2);
+        var res = Battle.fight(warrior1, warrior3);
+        assertTrue(res);
+    }
+
     private static Stream<Arguments> isAliveSecondWarrior() {
         return Stream.of(
                 Arguments.of(Warrior.of(Warrior.Type.WARRIOR), Warrior.of(Warrior.Type.WARRIOR), false),
@@ -65,7 +84,7 @@ class BattleTest {
     private static Stream<Arguments> provideFightersForResultOfFight() {
         return Stream.of(
                 Arguments.of(Warrior.of(Warrior.Type.WARRIOR), Warrior.of(Warrior.Type.KNIGHT), false),
-                Arguments.of(Warrior.of(Warrior.Type.WARRIOR), Warrior.of(Warrior.Type.WARRIOR), true)
+                Arguments.of(Warrior.of(Warrior.Type.KNIGHT), Warrior.of(Warrior.Type.WARRIOR), true)
         );
     }
 
