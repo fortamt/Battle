@@ -12,7 +12,6 @@ public interface Warrior {
             case KNIGHT -> new WarriorImpl(7, 50);
             case DEFENDER -> new Defender(3, 60, 2);
             case ROOKIE -> new WarriorImpl(1, 50);
-
         };
     }
 

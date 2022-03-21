@@ -1,6 +1,6 @@
 package war;
 
-public class Defender implements Warrior, Cloneable {
+public class Defender implements Warrior {
 
     private int attack = 3;
     private int health = 60;

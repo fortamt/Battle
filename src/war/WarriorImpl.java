@@ -1,6 +1,6 @@
 package war;
 
-public class WarriorImpl implements Cloneable, Warrior {
+public class WarriorImpl implements Warrior {
     private int attack = 5;
     private int health = 50;
 
@@ -8,7 +8,6 @@ public class WarriorImpl implements Cloneable, Warrior {
         this.attack = attack;
         this.health = health;
     }
-
 
     @Override
     public int getHealth() {
@@ -35,13 +34,13 @@ public class WarriorImpl implements Cloneable, Warrior {
         health -= warrior.getAttack();
     }
 
-    @Override
-    public Warrior clone() {
-        try {
-            return (Warrior) super.clone();
-        } catch (CloneNotSupportedException e) {
-            e.printStackTrace();
-        }
-        throw new AssertionError("never should get exception"); // never should get here
-    }
+//    @Override
+//    public Warrior clone() {
+//        try {
+//            return (Warrior) super.clone();
+//        } catch (CloneNotSupportedException e) {
+//            e.printStackTrace();
+//        }
+//        throw new AssertionError("never should get exception"); // never should get here
+//    }
 }
