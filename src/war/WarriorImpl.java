@@ -4,6 +4,8 @@ public class WarriorImpl implements Warrior {
     private int attack = 5;
     private int health = 50;
 
+    private Warrior nextBehind = null;
+
     WarriorImpl(int attack, int health) {
         this.attack = attack;
         this.health = health;
@@ -12,6 +14,10 @@ public class WarriorImpl implements Warrior {
     @Override
     public int getHealth() {
         return health;
+    }
+
+    protected void setHealth(int health) {
+        this.health = health;
     }
 
     @Override
@@ -27,20 +33,33 @@ public class WarriorImpl implements Warrior {
     @Override
     public void hit(Warrior warrior2) {
         warrior2.takeDamage(this);
+        underAttack(this);
     }
 
     @Override
-    public void takeDamage(Warrior warrior) {
+    public void takeDamage(HasAttack warrior) {
         health -= warrior.getAttack();
     }
 
-//    @Override
-//    public Warrior clone() {
-//        try {
-//            return (Warrior) super.clone();
-//        } catch (CloneNotSupportedException e) {
-//            e.printStackTrace();
-//        }
-//        throw new AssertionError("never should get exception"); // never should get here
-//    }
+    @Override
+    public void setNext(Warrior nextBehind) {
+        this.nextBehind = nextBehind;
+    }
+
+    @Override
+    public Warrior getNext() {
+        return nextBehind;
+    }
+
+    @Override
+    public int getInitHealth() {
+        return 50;
+    }
+
+    @Override
+    public void underAttack(WarriorImpl thisWarrior) {
+        if (getNext() != null) {
+            getNext().underAttack(this);
+        }
+    }
 }

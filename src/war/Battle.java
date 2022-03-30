@@ -20,19 +20,6 @@ public class Battle {
     }
 
     public static boolean fight(Army army1, Army army2) {
-//        var warrior1 = army1.getArmy().poll();
-//        var warrior2 = army2.getArmy().poll();
-//        do {
-//            var res = fight(warrior1, warrior2);
-//            if(res){
-//                warrior2 = army2.getArmy().poll();
-//            } else {
-//                warrior1 = army1.getArmy().poll();
-//            }
-//        } while (!army1.getArmy().isEmpty() && !army2.getArmy().isEmpty());
-//        return !army1.getArmy().isEmpty();
-
-
         var warrior11 = army1.getForce().poll();
         var warrior22 = army2.getForce().poll();
         while (true) {
