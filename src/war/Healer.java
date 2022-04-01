@@ -29,7 +29,9 @@ public class Healer extends WarriorImpl {
     @Override
     public void underAttack(WarriorImpl thisWarrior) {
         heal(thisWarrior);
-        getNext().underAttack(this);
+        if (getNext() != null) {
+            getNext().underAttack(this);
+        }
     }
 
     private void decreaseAid() {
