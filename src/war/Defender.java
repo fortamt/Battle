@@ -15,7 +15,7 @@ public class Defender extends WarriorImpl {
     @Override
     public void hit(Warrior warrior2) {
         warrior2.takeDamage(this);
-        underAttack(this);
+
     }
 
     @Override
@@ -27,6 +27,7 @@ public class Defender extends WarriorImpl {
     public void takeDamage(HasAttack warrior) {
         var damage = Math.max(0, warrior.getAttack()) - getDefense();
         super.takeDamage(() -> damage);
+        underAttack(this);
     }
 
     @Override

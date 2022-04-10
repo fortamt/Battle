@@ -33,7 +33,6 @@ public class WarriorImpl implements Warrior {
     @Override
     public void hit(Warrior warrior2) {
         warrior2.takeDamage(this);
-        underAttack(this);
     }
 
     @Override
@@ -41,6 +40,7 @@ public class WarriorImpl implements Warrior {
         if (warrior.getAttack() > 0) {
             health -= warrior.getAttack();
         }
+        underAttack(this);
     }
 
     @Override

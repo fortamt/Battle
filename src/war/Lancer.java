@@ -19,6 +19,5 @@ public class Lancer extends WarriorImpl {
         if (warrior2.getNext() != null) {
             warrior2.getNext().takeDamage(() -> damageVolume / 2);
         }
-        underAttack(this);
     }
 }

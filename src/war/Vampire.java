@@ -25,7 +25,6 @@ public class Vampire extends WarriorImpl {
         var heal = (healthBefore - warrior2.getHealth()) * getVampiring() / 100;
         var vampireHealth = this.getHealth() + heal;
         setHealth(Math.min(vampireHealth, getInitHealth()));
-        underAttack(this);
     }
 
     @Override

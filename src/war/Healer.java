@@ -23,7 +23,6 @@ public class Healer extends WarriorImpl {
 
     @Override
     public void hit(Warrior warrior2) {
-        underAttack(this);
     }
 
     @Override
