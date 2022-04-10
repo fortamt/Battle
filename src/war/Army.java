@@ -1,13 +1,13 @@
 package war;
 
 
-import java.util.ArrayDeque;
-import java.util.Deque;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Army {
-    private Deque<Warrior> force = new ArrayDeque<>();
+    private List<Warrior> force = new ArrayList<>();
 
-    public Deque<Warrior> getForce() {
+    public List<Warrior> getForce() {
         return force;
     }
 
@@ -15,7 +15,7 @@ public class Army {
         for (int i = 0; i < quantity; i++) {
             if (!force.isEmpty()) {
                 var warrior = Warrior.of(type);
-                force.getLast().setNext(warrior);
+                force.get(force.size() - 1).setNext(warrior);
                 force.add(warrior);
             } else {
                 force.add(Warrior.of(type));

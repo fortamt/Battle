@@ -16,7 +16,7 @@ public class WarriorImpl implements Warrior {
         return health;
     }
 
-    protected void setHealth(int health) {
+    public void setHealth(int health) {
         this.health = health;
     }
 
@@ -38,7 +38,9 @@ public class WarriorImpl implements Warrior {
 
     @Override
     public void takeDamage(HasAttack warrior) {
-        health -= warrior.getAttack();
+        if (warrior.getAttack() > 0) {
+            health -= warrior.getAttack();
+        }
     }
 
     @Override
@@ -57,9 +59,17 @@ public class WarriorImpl implements Warrior {
     }
 
     @Override
-    public void underAttack(WarriorImpl thisWarrior) {
+    public void underAttack(Warrior thisWarrior) {
         if (getNext() != null) {
             getNext().underAttack(this);
         }
     }
+
+    @Override
+    public void equipWeapon(Weapon weapon) {
+        this.health += weapon.getHealth();
+        this.attack += weapon.getAttack();
+    }
+
+
 }

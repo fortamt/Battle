@@ -26,6 +26,8 @@ public interface Warrior extends HasAttack {
 
     boolean isAlive();
 
+    void equipWeapon(Weapon name);
+
     void hit(Warrior warrior2);
 
     void takeDamage(HasAttack warrior);
@@ -34,5 +36,7 @@ public interface Warrior extends HasAttack {
 
     void setNext(Warrior nextBehind);
 
-    void underAttack(WarriorImpl thisWarrior);
+    void setHealth(int health);
+
+    void underAttack(Warrior thisWarrior);
 }

@@ -2,28 +2,36 @@ package war;
 
 public class Vampire extends WarriorImpl {
 
-    private final int VAMPIRISM = 50;
+    private int vampiring = 50;
+    private int initHealth = 40;
 
     public Vampire() {
         super(4, 40);
     }
 
-    public int getVampirism() {
-        return VAMPIRISM;
+    public int getVampiring() {
+        return vampiring;
     }
 
     @Override
     public int getInitHealth() {
-        return 40;
+        return initHealth;
     }
 
     @Override
     public void hit(Warrior warrior2) {
         var healthBefore = warrior2.getHealth();
         warrior2.takeDamage(this);
-        var heal = (healthBefore - warrior2.getHealth()) * getVampirism() / 100;
+        var heal = (healthBefore - warrior2.getHealth()) * getVampiring() / 100;
         var vampireHealth = this.getHealth() + heal;
-        setHealth(Math.min(vampireHealth, 40));
+        setHealth(Math.min(vampireHealth, getInitHealth()));
         underAttack(this);
+    }
+
+    @Override
+    public void equipWeapon(Weapon weapon) {
+        super.equipWeapon(weapon);
+        this.vampiring += weapon.getVampiring();
+        this.initHealth = this.getHealth();
     }
 }

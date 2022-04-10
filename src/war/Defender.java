@@ -2,14 +2,14 @@ package war;
 
 public class Defender extends WarriorImpl {
 
-    private final int DEFENSE = 2;
+    private int defense = 2;
 
     Defender() {
         super(3, 60);
     }
 
     public int getDefense() {
-        return DEFENSE;
+        return defense;
     }
 
     @Override
@@ -29,5 +29,9 @@ public class Defender extends WarriorImpl {
         super.takeDamage(() -> damage);
     }
 
-
+    @Override
+    public void equipWeapon(Weapon weapon) {
+        super.equipWeapon(weapon);
+        this.defense += weapon.getDefense();
+    }
 }

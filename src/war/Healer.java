@@ -2,7 +2,7 @@ package war;
 
 public class Healer extends WarriorImpl {
 
-    private final int HEAL = 2;
+    private int healPower = 2;
     private int firstAid = 100;
 
     public Healer() {
@@ -14,9 +14,9 @@ public class Healer extends WarriorImpl {
         return 60;
     }
 
-    private void heal(WarriorImpl warrior) {
+    private void heal(Warrior warrior) {
         if (firstAid > 0) {
-            warrior.setHealth(Math.min(getInitHealth(), getHealth() + this.HEAL));
+            warrior.setHealth(Math.min(warrior.getInitHealth(), warrior.getHealth() + this.healPower));
             decreaseAid();
         }
     }
@@ -27,11 +27,17 @@ public class Healer extends WarriorImpl {
     }
 
     @Override
-    public void underAttack(WarriorImpl thisWarrior) {
+    public void underAttack(Warrior thisWarrior) {
         heal(thisWarrior);
         if (getNext() != null) {
             getNext().underAttack(this);
         }
+    }
+
+    @Override
+    public void equipWeapon(Weapon weapon) {
+        super.equipWeapon(weapon);
+        this.healPower += weapon.healPower();
     }
 
     private void decreaseAid() {

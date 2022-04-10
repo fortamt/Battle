@@ -20,7 +20,9 @@ class ArmyBattleTest {
         var army2 = new Army();
         army1.addUnits(warrior1, quantity1);
         army2.addUnits(warrior2, quantity2);
+
         var res = Battle.fight(army1, army2);
+
         assertEquals(expected, res);
     }
 
