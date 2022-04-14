@@ -2,14 +2,20 @@ package war;
 
 public class Lancer extends WarriorImpl {
 
+    static int initialHealth = 50;
+
     public Lancer() {
         super(6, 50);
     }
 
     @Override
     public int getInitHealth() {
-        return 50;
+        return Math.max(0,
+                initialHealth + weapons.stream()
+                        .mapToInt(Weapon::getHealth)
+                        .sum());
     }
+
 
     @Override
     public void hit(Warrior warrior2) {
@@ -20,4 +26,5 @@ public class Lancer extends WarriorImpl {
             warrior2.getNext().takeDamage(() -> damageVolume / 2);
         }
     }
+
 }

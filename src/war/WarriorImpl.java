@@ -1,10 +1,20 @@
 package war;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class WarriorImpl implements Warrior {
-    private int attack = 5;
-    private int health = 50;
+    static int initialHealth = 50;
+    private final int attack;
+    private int health;
+    protected final List<Weapon> weapons = new ArrayList<>();
 
     private Warrior nextBehind = null;
+
+    WarriorImpl(int attack) {
+        this.attack = attack;
+        this.health = getInitHealth();
+    }
 
     WarriorImpl(int attack, int health) {
         this.attack = attack;
@@ -17,12 +27,14 @@ public class WarriorImpl implements Warrior {
     }
 
     public void setHealth(int health) {
-        this.health = health;
+        this.health = Math.min(getInitHealth(), health);
     }
 
     @Override
     public int getAttack() {
-        return attack;
+        return attack + weapons.stream()
+                .mapToInt(Weapon::getAttack)
+                .sum();
     }
 
     @Override
@@ -55,7 +67,10 @@ public class WarriorImpl implements Warrior {
 
     @Override
     public int getInitHealth() {
-        return 50;
+        return Math.max(0,
+                initialHealth + weapons.stream()
+                        .mapToInt(Weapon::getHealth)
+                        .sum());
     }
 
     @Override
@@ -67,9 +82,7 @@ public class WarriorImpl implements Warrior {
 
     @Override
     public void equipWeapon(Weapon weapon) {
-        this.health += weapon.getHealth();
-        this.attack += weapon.getAttack();
+        weapons.add(weapon);
+        setHealth(getHealth() + weapon.getHealth());
     }
-
-
 }

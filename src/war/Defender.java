@@ -2,6 +2,7 @@ package war;
 
 public class Defender extends WarriorImpl {
 
+    static int initialHealth = 60;
     private int defense = 2;
 
     Defender() {
@@ -19,7 +20,10 @@ public class Defender extends WarriorImpl {
 
     @Override
     public int getInitHealth() {
-        return 60;
+        return Math.max(0,
+                initialHealth + weapons.stream()
+                        .mapToInt(Weapon::getHealth)
+                        .sum());
     }
 
     @Override
@@ -32,6 +36,10 @@ public class Defender extends WarriorImpl {
     @Override
     public void equipWeapon(Weapon weapon) {
         super.equipWeapon(weapon);
-        this.defense += weapon.getDefense();
+        setDefense(getDefense() + weapon.getDefense());
+    }
+
+    private void setDefense(int defense) {
+        this.defense = defense;
     }
 }

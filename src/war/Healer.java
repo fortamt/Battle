@@ -2,6 +2,7 @@ package war;
 
 public class Healer extends WarriorImpl {
 
+    static int initialHealth = 60;
     private int healPower = 2;
     private int firstAid = 100;
 
@@ -11,7 +12,10 @@ public class Healer extends WarriorImpl {
 
     @Override
     public int getInitHealth() {
-        return 60;
+        return Math.max(0,
+                initialHealth + weapons.stream()
+                        .mapToInt(Weapon::getHealth)
+                        .sum());
     }
 
     private void heal(Warrior warrior) {
@@ -36,7 +40,15 @@ public class Healer extends WarriorImpl {
     @Override
     public void equipWeapon(Weapon weapon) {
         super.equipWeapon(weapon);
-        this.healPower += weapon.healPower();
+        setHealPower(getHealPower() + weapon.healPower());
+    }
+
+    private int getHealPower() {
+        return healPower;
+    }
+
+    private void setHealPower(int healPower) {
+        this.healPower = healPower;
     }
 
     private void decreaseAid() {

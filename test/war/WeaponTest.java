@@ -8,13 +8,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class WeaponTest {
 
+
     @Test
     @DisplayName("1")
     void fight() {
         var warrior1 = Warrior.of(Warrior.Type.LANCER);
         warrior1.equipWeapon(Weapon.customizedWeapon(-10, 5, 0, 40, 0));
         var warrior2 = Warrior.of(Warrior.Type.VAMPIRE);
-        warrior2.equipWeapon(PredefinedWeapon.SWORD);
+        warrior2.equipWeapon(new Sword(new NoWeapon()));
 
         var res = Battle.fight(warrior1, warrior2);
 
@@ -25,9 +26,9 @@ class WeaponTest {
     @DisplayName("2")
     void fight1() {
         var warrior1 = Warrior.of(Warrior.Type.DEFENDER);
-        warrior1.equipWeapon(PredefinedWeapon.SHIELD);
+        warrior1.equipWeapon(new Shield(new NoWeapon()));
         var warrior2 = Warrior.of(Warrior.Type.LANCER);
-        warrior2.equipWeapon(PredefinedWeapon.GREAT_AXE);
+        warrior2.equipWeapon(new GreatAxe(new NoWeapon()));
 
         var res = Battle.fight(warrior1, warrior2);
 
@@ -38,9 +39,9 @@ class WeaponTest {
     @DisplayName("3")
     void fight2() {
         var warrior1 = Warrior.of(Warrior.Type.HEALER);
-        warrior1.equipWeapon(PredefinedWeapon.MAGIC_WAND);
+        warrior1.equipWeapon(new MagicWand(new NoWeapon()));
         var warrior2 = Warrior.of(Warrior.Type.KNIGHT);
-        warrior2.equipWeapon(PredefinedWeapon.KATANA);
+        warrior2.equipWeapon(new Katana(new NoWeapon()));
 
         var res = Battle.fight(warrior1, warrior2);
 
@@ -52,14 +53,10 @@ class WeaponTest {
     void fight3() {
         var warrior1 = Warrior.of(Warrior.Type.DEFENDER);
         var warrior2 = Warrior.of(Warrior.Type.VAMPIRE);
-        var weapon1 = PredefinedWeapon.SHIELD;
-        var weapon2 = PredefinedWeapon.MAGIC_WAND;
-        var weapon3 = PredefinedWeapon.SHIELD;
-        var weapon4 = PredefinedWeapon.KATANA;
+        var weapon1 = new MagicWand(new Shield(new NoWeapon()));
+        var weapon2 = new Katana(new Shield(new NoWeapon()));
         warrior1.equipWeapon(weapon1);
-        warrior1.equipWeapon(weapon2);
-        warrior2.equipWeapon(weapon3);
-        warrior2.equipWeapon(weapon4);
+        warrior2.equipWeapon(weapon2);
 
         var res = Battle.fight(warrior1, warrior2);
 
@@ -69,8 +66,8 @@ class WeaponTest {
     @Test
     @DisplayName("5")
     void fight4() {
-        var weapon1 = PredefinedWeapon.MAGIC_WAND;
-        var weapon2 = PredefinedWeapon.GREAT_AXE;
+        var weapon1 = new MagicWand(new NoWeapon());
+        var weapon2 = new GreatAxe(new NoWeapon());
         var army1 = new Army();
         var army2 = new Army();
         army1.addUnits(Warrior.Type.KNIGHT, 1);
@@ -91,8 +88,8 @@ class WeaponTest {
     @Test
     @DisplayName("6")
     void fight5() {
-        var weapon1 = PredefinedWeapon.SWORD;
-        var weapon2 = PredefinedWeapon.GREAT_AXE;
+        var weapon1 = new Sword(new NoWeapon());
+        var weapon2 = new GreatAxe(new NoWeapon());
         var army1 = new Army();
         var army2 = new Army();
         army1.addUnits(Warrior.Type.DEFENDER, 1);
@@ -113,7 +110,7 @@ class WeaponTest {
     @Test
     @DisplayName("7")
     void fight6() {
-        var weapon1 = PredefinedWeapon.KATANA;
+        var weapon1 = new Katana(new NoWeapon());
         var army1 = new Army();
         var army2 = new Army();
         army1.addUnits(Warrior.Type.DEFENDER, 2);
@@ -179,8 +176,8 @@ class WeaponTest {
     @Test
     @DisplayName("10")
     void fight9() {
-        var weapon1 = PredefinedWeapon.KATANA;
-        var weapon2 = PredefinedWeapon.SHIELD;
+        var weapon1 = new Katana(new NoWeapon());
+        var weapon2 = new Shield(new NoWeapon());
         var army1 = new Army();
         var army2 = new Army();
         army1.addUnits(Warrior.Type.VAMPIRE, 2);
@@ -203,8 +200,8 @@ class WeaponTest {
     @Test
     @DisplayName("11")
     void fight10() {
-        var weapon1 = PredefinedWeapon.SWORD;
-        var weapon2 = PredefinedWeapon.GREAT_AXE;
+        var weapon1 = new Sword(new NoWeapon());
+        var weapon2 = new GreatAxe(new NoWeapon());
         var army1 = new Army();
         var army2 = new Army();
         army1.addUnits(Warrior.Type.VAMPIRE, 3);
@@ -224,8 +221,8 @@ class WeaponTest {
     @Test
     @DisplayName("12")
     void fight11() {
-        var weapon1 = PredefinedWeapon.KATANA;
-        var weapon2 = PredefinedWeapon.MAGIC_WAND;
+        var weapon1 = new Katana(new NoWeapon());
+        var weapon2 = new MagicWand(new NoWeapon());
         var army1 = new Army();
         var army2 = new Army();
         army1.addUnits(Warrior.Type.ROOKIE, 3);

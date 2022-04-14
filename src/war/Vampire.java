@@ -2,20 +2,23 @@ package war;
 
 public class Vampire extends WarriorImpl {
 
+    static int initialHealth = 40;
     private int vampiring = 50;
-    private int initHealth = 40;
 
     public Vampire() {
         super(4, 40);
     }
 
-    public int getVampiring() {
+    private int getVampiring() {
         return vampiring;
     }
 
     @Override
     public int getInitHealth() {
-        return initHealth;
+        return Math.max(0,
+                initialHealth + weapons.stream()
+                        .mapToInt(Weapon::getHealth)
+                        .sum());
     }
 
     @Override
@@ -30,7 +33,10 @@ public class Vampire extends WarriorImpl {
     @Override
     public void equipWeapon(Weapon weapon) {
         super.equipWeapon(weapon);
-        this.vampiring += weapon.getVampiring();
-        this.initHealth = this.getHealth();
+        setVampiring(getVampiring() + weapon.getVampiring());
+    }
+
+    private void setVampiring(int vampiring) {
+        this.vampiring = vampiring;
     }
 }
