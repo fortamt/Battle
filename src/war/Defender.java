@@ -20,10 +20,7 @@ public class Defender extends WarriorImpl {
 
     @Override
     public int getInitHealth() {
-        return Math.max(0,
-                initialHealth + weapons.stream()
-                        .mapToInt(Weapon::getHealth)
-                        .sum());
+        return initialHealth;
     }
 
     @Override

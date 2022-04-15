@@ -22,6 +22,8 @@ public interface Warrior extends HasAttack {
 
     int getInitHealth();
 
+    int getInitHealthWithModifier();
+
     int getAttack();
 
     boolean isAlive();

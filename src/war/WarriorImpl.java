@@ -7,14 +7,9 @@ public class WarriorImpl implements Warrior {
     static int initialHealth = 50;
     private final int attack;
     private int health;
-    protected final List<Weapon> weapons = new ArrayList<>();
+    private final List<Weapon> weapons = new ArrayList<>();
 
     private Warrior nextBehind = null;
-
-    WarriorImpl(int attack) {
-        this.attack = attack;
-        this.health = getInitHealth();
-    }
 
     WarriorImpl(int attack, int health) {
         this.attack = attack;
@@ -27,7 +22,7 @@ public class WarriorImpl implements Warrior {
     }
 
     public void setHealth(int health) {
-        this.health = Math.min(getInitHealth(), health);
+        this.health = Math.min(getInitHealthWithModifier(), health);
     }
 
     @Override
@@ -67,8 +62,13 @@ public class WarriorImpl implements Warrior {
 
     @Override
     public int getInitHealth() {
+        return initialHealth;
+    }
+
+    @Override
+    public int getInitHealthWithModifier() {
         return Math.max(0,
-                initialHealth + weapons.stream()
+                getInitHealth() + weapons.stream()
                         .mapToInt(Weapon::getHealth)
                         .sum());
     }

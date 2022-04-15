@@ -15,10 +15,7 @@ public class Vampire extends WarriorImpl {
 
     @Override
     public int getInitHealth() {
-        return Math.max(0,
-                initialHealth + weapons.stream()
-                        .mapToInt(Weapon::getHealth)
-                        .sum());
+        return initialHealth;
     }
 
     @Override
@@ -27,7 +24,7 @@ public class Vampire extends WarriorImpl {
         warrior2.takeDamage(this);
         var heal = (healthBefore - warrior2.getHealth()) * getVampiring() / 100;
         var vampireHealth = this.getHealth() + heal;
-        setHealth(Math.min(vampireHealth, getInitHealth()));
+        setHealth(Math.min(vampireHealth, getInitHealthWithModifier()));
     }
 
     @Override

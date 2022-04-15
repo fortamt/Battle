@@ -12,15 +12,12 @@ public class Healer extends WarriorImpl {
 
     @Override
     public int getInitHealth() {
-        return Math.max(0,
-                initialHealth + weapons.stream()
-                        .mapToInt(Weapon::getHealth)
-                        .sum());
+        return initialHealth;
     }
 
     private void heal(Warrior warrior) {
         if (firstAid > 0) {
-            warrior.setHealth(Math.min(warrior.getInitHealth(), warrior.getHealth() + this.healPower));
+            warrior.setHealth(Math.min(warrior.getInitHealthWithModifier(), warrior.getHealth() + this.healPower));
             decreaseAid();
         }
     }
