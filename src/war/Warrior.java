@@ -3,7 +3,7 @@ package war;
 public interface Warrior extends HasAttack {
 
     enum Type {
-        WARRIOR, KNIGHT, DEFENDER, ROOKIE, VAMPIRE, LANCER, HEALER
+        WARRIOR, KNIGHT, DEFENDER, ROOKIE, VAMPIRE, LANCER, HEALER, WARLORD
     }
 
     static Warrior of(Type type) {
@@ -15,6 +15,7 @@ public interface Warrior extends HasAttack {
             case VAMPIRE -> new Vampire();
             case LANCER -> new Lancer();
             case HEALER -> new Healer();
+            case WARLORD -> new Warlord();
         };
     }
 

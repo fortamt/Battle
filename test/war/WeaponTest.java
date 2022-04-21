@@ -74,10 +74,10 @@ class WeaponTest {
         army1.addUnits(Warrior.Type.LANCER, 1);
         army2.addUnits(Warrior.Type.VAMPIRE, 1);
         army2.addUnits(Warrior.Type.HEALER, 1);
-        army1.getForce().get(0).equipWeapon(weapon1);
-        army1.getForce().get(1).equipWeapon(weapon2);
-        army2.getForce().get(0).equipWeapon(weapon1);
-        army2.getForce().get(1).equipWeapon(weapon2);
+        army1.getTroops().get(0).equipWeapon(weapon1);
+        army1.getTroops().get(1).equipWeapon(weapon2);
+        army2.getTroops().get(0).equipWeapon(weapon1);
+        army2.getTroops().get(1).equipWeapon(weapon2);
 
 
         var res = Battle.fight(army1, army2);
@@ -96,10 +96,10 @@ class WeaponTest {
         army1.addUnits(Warrior.Type.WARRIOR, 1);
         army2.addUnits(Warrior.Type.KNIGHT, 1);
         army2.addUnits(Warrior.Type.HEALER, 1);
-        army1.getForce().get(0).equipWeapon(weapon2);
-        army1.getForce().get(1).equipWeapon(weapon2);
-        army2.getForce().get(0).equipWeapon(weapon1);
-        army2.getForce().get(1).equipWeapon(weapon1);
+        army1.getTroops().get(0).equipWeapon(weapon2);
+        army1.getTroops().get(1).equipWeapon(weapon2);
+        army2.getTroops().get(0).equipWeapon(weapon1);
+        army2.getTroops().get(1).equipWeapon(weapon1);
 
 
         var res = Battle.fight(army1, army2);
@@ -116,10 +116,10 @@ class WeaponTest {
         army1.addUnits(Warrior.Type.DEFENDER, 2);
         army2.addUnits(Warrior.Type.KNIGHT, 1);
         army2.addUnits(Warrior.Type.VAMPIRE, 1);
-        army1.getForce().get(0).equipWeapon(weapon1);
-        army1.getForce().get(1).equipWeapon(weapon1);
-        army2.getForce().get(0).equipWeapon(weapon1);
-        army2.getForce().get(1).equipWeapon(weapon1);
+        army1.getTroops().get(0).equipWeapon(weapon1);
+        army1.getTroops().get(1).equipWeapon(weapon1);
+        army2.getTroops().get(0).equipWeapon(weapon1);
+        army2.getTroops().get(1).equipWeapon(weapon1);
 
 
         var res = Battle.fight(army1, army2);
@@ -137,12 +137,12 @@ class WeaponTest {
         army1.addUnits(Warrior.Type.KNIGHT, 3);
         army2.addUnits(Warrior.Type.WARRIOR, 1);
         army2.addUnits(Warrior.Type.DEFENDER, 2);
-        army1.getForce().get(0).equipWeapon(weapon1);
-        army1.getForce().get(1).equipWeapon(weapon1);
-        army1.getForce().get(2).equipWeapon(weapon2);
-        army2.getForce().get(0).equipWeapon(weapon1);
-        army2.getForce().get(1).equipWeapon(weapon2);
-        army2.getForce().get(2).equipWeapon(weapon2);
+        army1.getTroops().get(0).equipWeapon(weapon1);
+        army1.getTroops().get(1).equipWeapon(weapon1);
+        army1.getTroops().get(2).equipWeapon(weapon2);
+        army2.getTroops().get(0).equipWeapon(weapon1);
+        army2.getTroops().get(1).equipWeapon(weapon2);
+        army2.getTroops().get(2).equipWeapon(weapon2);
 
 
         var res = Battle.fight(army1, army2);
@@ -160,12 +160,12 @@ class WeaponTest {
         army1.addUnits(Warrior.Type.VAMPIRE, 3);
         army2.addUnits(Warrior.Type.WARRIOR, 1);
         army2.addUnits(Warrior.Type.DEFENDER, 2);
-        army1.getForce().get(0).equipWeapon(weapon1);
-        army1.getForce().get(1).equipWeapon(weapon1);
-        army1.getForce().get(2).equipWeapon(weapon2);
-        army2.getForce().get(0).equipWeapon(weapon1);
-        army2.getForce().get(1).equipWeapon(weapon2);
-        army2.getForce().get(2).equipWeapon(weapon2);
+        army1.getTroops().get(0).equipWeapon(weapon1);
+        army1.getTroops().get(1).equipWeapon(weapon1);
+        army1.getTroops().get(2).equipWeapon(weapon2);
+        army2.getTroops().get(0).equipWeapon(weapon1);
+        army2.getTroops().get(1).equipWeapon(weapon2);
+        army2.getTroops().get(2).equipWeapon(weapon2);
 
 
         var res = Battle.fight(army1, army2);
@@ -184,12 +184,12 @@ class WeaponTest {
         army1.addUnits(Warrior.Type.ROOKIE, 2);
         army2.addUnits(Warrior.Type.WARRIOR, 1);
         army2.addUnits(Warrior.Type.DEFENDER, 2);
-        army1.getForce().get(0).equipWeapon(weapon1);
-        army1.getForce().get(1).equipWeapon(weapon1);
-        army1.getForce().get(2).equipWeapon(weapon2);
-        army2.getForce().get(0).equipWeapon(weapon1);
-        army2.getForce().get(1).equipWeapon(weapon2);
-        army2.getForce().get(2).equipWeapon(weapon2);
+        army1.getTroops().get(0).equipWeapon(weapon1);
+        army1.getTroops().get(1).equipWeapon(weapon1);
+        army1.getTroops().get(2).equipWeapon(weapon2);
+        army2.getTroops().get(0).equipWeapon(weapon1);
+        army2.getTroops().get(1).equipWeapon(weapon2);
+        army2.getTroops().get(2).equipWeapon(weapon2);
 
 
         var res = Battle.fight(army1, army2);
@@ -207,11 +207,11 @@ class WeaponTest {
         army1.addUnits(Warrior.Type.VAMPIRE, 3);
         army2.addUnits(Warrior.Type.WARRIOR, 1);
         army2.addUnits(Warrior.Type.DEFENDER, 1);
-        army1.getForce().get(0).equipWeapon(weapon2);
-        army1.getForce().get(1).equipWeapon(weapon2);
-        army1.getForce().get(2).equipWeapon(weapon2);
-        army2.getForce().get(0).equipWeapon(weapon1);
-        army2.getForce().get(1).equipWeapon(weapon1);
+        army1.getTroops().get(0).equipWeapon(weapon2);
+        army1.getTroops().get(1).equipWeapon(weapon2);
+        army1.getTroops().get(2).equipWeapon(weapon2);
+        army2.getTroops().get(0).equipWeapon(weapon1);
+        army2.getTroops().get(1).equipWeapon(weapon1);
 
         var res = Battle.fight(army1, army2);
 
@@ -228,11 +228,11 @@ class WeaponTest {
         army1.addUnits(Warrior.Type.ROOKIE, 3);
         army2.addUnits(Warrior.Type.WARRIOR, 1);
         army2.addUnits(Warrior.Type.HEALER, 1);
-        army1.getForce().get(0).equipWeapon(weapon1);
-        army1.getForce().get(1).equipWeapon(weapon1);
-        army1.getForce().get(2).equipWeapon(weapon1);
-        army2.getForce().get(0).equipWeapon(weapon2);
-        army2.getForce().get(1).equipWeapon(weapon2);
+        army1.getTroops().get(0).equipWeapon(weapon1);
+        army1.getTroops().get(1).equipWeapon(weapon1);
+        army1.getTroops().get(2).equipWeapon(weapon1);
+        army2.getTroops().get(0).equipWeapon(weapon2);
+        army2.getTroops().get(1).equipWeapon(weapon2);
 
         var res = Battle.fight(army1, army2);
 

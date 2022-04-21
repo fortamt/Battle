@@ -1,14 +1,11 @@
 package war;
 
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Battle {
+
     private Battle() {
     }
-
-    private final static Logger logger = Logger.getLogger(Battle.class.getName());
 
     public static boolean fight(Warrior warrior1, Warrior warrior2) {
         while (true) {
@@ -26,49 +23,46 @@ public class Battle {
     }
 
     public static boolean fight(Army army1, Army army2) {
-        var warrior11 = army1.getForce().get(0);
-        var warrior22 = army2.getForce().get(0);
         while (true) {
-            logger.entering(Battle.class.getName(), "fight");
-            logger.log(Level.SEVERE, "enter");
-            logger.log(Level.SEVERE, "warrior = " + warrior11.getClass().getName() + " health = " + warrior11.getHealth() + " strong = " + warrior11.getAttack());
-            logger.log(Level.SEVERE, "warrior = " + warrior22.getClass().getName() + " health = " + warrior22.getHealth() + " strong = " + warrior22.getAttack());
+            army1.moveUnits();
+            army2.moveUnits();
+            army1.setNextBehind();
+            army2.setNextBehind();
+            var warrior11 = army1.getTroops().get(0);
+            var warrior22 = army2.getTroops().get(0);
             var res = Battle.fight(warrior11, warrior22);
-            logger.log(Level.SEVERE, "warrior = " + warrior11.getClass().getName() + " health = " + warrior11.getHealth() + " strong = " + warrior11.getAttack());
-            logger.log(Level.SEVERE, "warrior = " + warrior22.getClass().getName() + " health = " + warrior22.getHealth() + " strong = " + warrior22.getAttack());
-            logger.log(Level.SEVERE, "out");
-            logger.exiting(Battle.class.getName(), "fight");
-
             if (res) {
-                army2.getForce().remove(0);
+                army2.getTroops().remove(0);
             } else {
-                army1.getForce().remove(0);
+                army1.getTroops().remove(0);
             }
-            if (res && !army2.getForce().isEmpty()) {
-                warrior22 = army2.getForce().get(0);
+            if (res && !army2.getTroops().isEmpty()) {
+                warrior22 = army2.getTroops().get(0);
             }
-            if (!res && !army1.getForce().isEmpty()) {
-                warrior11 = army1.getForce().get(0);
+            if (!res && !army1.getTroops().isEmpty()) {
+                warrior11 = army1.getTroops().get(0);
             }
-            if (army1.getForce().isEmpty() && !warrior11.isAlive()) {
+            if (army1.getTroops().isEmpty() && !warrior11.isAlive()) {
                 return false;
             }
-            if (army2.getForce().isEmpty() && !warrior22.isAlive()) {
+            if (army2.getTroops().isEmpty() && !warrior22.isAlive()) {
                 return true;
             }
         }
     }
 
     public static boolean straightFight(Army army1, Army army2) {
-        int countPair = Math.min(army1.getForce().size(), army2.getForce().size());
-        removeNextWarrior(army1.getForce(), army2.getForce());
-        while (!army1.getForce().isEmpty() && !army2.getForce().isEmpty()) {
+        army1.moveUnits();
+        army2.moveUnits();
+        int countPair = Math.min(army1.getTroops().size(), army2.getTroops().size());
+        removeNextWarrior(army1.getTroops(), army2.getTroops());
+        while (!army1.getTroops().isEmpty() && !army2.getTroops().isEmpty()) {
             for (int i = 0; i < countPair; i++) {
-                Battle.fight(army1.getForce().get(i), army2.getForce().get(i));
+                Battle.fight(army1.getTroops().get(i), army2.getTroops().get(i));
             }
-            countPair = calculatePairAfterLineFight(army1.getForce(), army2.getForce(), countPair);
+            countPair = calculatePairAfterLineFight(army1.getTroops(), army2.getTroops(), countPair);
         }
-        return !army1.getForce().isEmpty();
+        return !army1.getTroops().isEmpty();
     }
 
     private static int calculatePairAfterLineFight(List<Warrior> lineArmy1, List<Warrior> lineArmy2, int countPair) {

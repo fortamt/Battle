@@ -9,6 +9,11 @@ public class Defender extends WarriorImpl {
         super(3, 60);
     }
 
+    Defender(int attack, int health, int defense) {
+        super(attack, health);
+        this.defense = defense;
+    }
+
     public int getDefense() {
         return defense;
     }
